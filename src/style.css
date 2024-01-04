@@ -19,6 +19,16 @@ import 'virtual:uno.css'
 	outline: none !important;
 }
 
+input,
+textarea,
+button,
+select,
+a,
+label,
+div {
+	-webkit-tap-highlight-color: transparent;
+}
+
 .homepage {
 	@apply text-center;
 }

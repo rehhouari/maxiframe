@@ -71,14 +71,14 @@ export default () => ({
 
 	// Get the indicies of the currently selected frame and ability if any
 	// This is a handler for the "/:warframe/:ability?" route
-	async getIndicies(ctx) {
+	getIndicies(ctx) {
+		this.showResults = false
 		this.selectedFrameIndex = this.data.findIndex((value) => ctx.params.warframe.toLowerCase() == value.warframeName.toLowerCase())
 		if (this.selectedFrameIndex != -1 && ctx.params.ability) {
 			this.selectedAbilityIndex = this.data[this.selectedFrameIndex].abilities.findIndex((value) => ctx.params.ability.toLowerCase() == value.id)
 		} else {
 			this.selectedAbilityIndex = -1
 		}
-		this.showResults = false
 	},
 	//#endregion
 
