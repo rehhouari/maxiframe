@@ -1,0 +1,150 @@
+<html lang="en" class="no-focus-outline">
+
+<head>
+	<title>Maxiframe</title>
+	<meta name="description" content="Warframe ability maximization web app.">
+	<!-- Global meta tags. -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Favicons. -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/favicon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/favicon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/favicon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/favicon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/favicon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/favicon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/favicon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/favicon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<meta name="msapplication-TileColor" content="#02B9FF">
+	<meta name="msapplication-TileImage" content="/favicon-144x144.png">
+	<meta name="msapplication-config" content="/browserconfig.xml">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#02B9FF" />
+	<link rel="preconnect" href="https://rsms.me/">
+	<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+	<script type="module" src="/src/main.js"></script>
+	<link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body class="container bg-white dark:(bg-gray-900 text-white)">
+	<div class="prose mx-auto" x-data="maxiframe()" @keydown.document.shift.d.prevent="toggleDarkMode()" x-cloak>
+		<header>
+			<!-- #region navbar-->
+			<div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-2">
+				<div class="flex h-16 items-center justify-center">
+					<div class="md:flex md:items-center md:gap-12">
+						<a class="block" href="/">
+							<span class="sr-only">Home</span>
+							<img src="/favicon-76x76.png" alt="" srcset="" class="animate-pulse inline">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="relative" @keydown.escape="showResults=false" @click.outside="showResults=false">
+				<!-- #endregion -->
+				<!-- #region Search bar-->
+				<form role="search" class="relative search-bar" @submit.prevent>
+					<label for="Search" class="sr-only"> Search </label>
+					<input type="text" id="Search" placeholder="Search for Warframe or ability..." autocomplete="off"
+						x-model.debounce="search" @focus="showResults = true" @input="showResults = true"
+						@click="showResults = true" name="maxiframe search" />
+					<span class="icon">
+						<span class="sr-only">Search</span>
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+							stroke="currentColor" class="h-4 w-4">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+						</svg>
+					</span>
+				</form>
+				<!-- #endregion -->
+				<!-- #region Search results-->
+				<div class="search-results not-prose" x-show="showResults">
+					<ul>
+						<template x-if="isSearchEmpty()">
+							<div>
+								<template x-for="warframe in data" :key="warframe.warframeName">
+									<li class="search-result">
+										<a :href="`/${warframe.warframeName}`" @click="showResults = false">
+											<div>
+												<span x-text="warframe.warframeName"></span>
+											</div>
+										</a>
+									</li>
+								</template>
+							</div>
+						</template>
+						<template x-for="(result, index) in searchResults()" :key="index">
+							<li class="search-result">
+								<template x-if="result.matches[0].key == 'abilities.id'">
+									<a :href="`/${result.item.warframeName}/${getAbilityId(result)}`"
+										@click="showResults = false">
+										<div>
+											<span x-text="getAbilityName(result)"></span>
+											<span class="tag" x-text="result.item.warframeName"></span>
+										</div>
+									</a>
+								</template>
+								<template x-if="result.matches[0].key == 'warframeName'">
+									<a :href="`/${result.item.warframeName}`">
+										<div>
+											<span x-text="result.item.warframeName"></span>
+										</div>
+									</a>
+								</template>
+							</li>
+						</template>
+						<template x-if="isSearchEmpty() == false && noResults && showResults">
+							<div>
+								<p class="text-sm text-center py-4 text-gray-600">No Results</p>
+							</div>
+						</template>
+					</ul>
+				</div>
+				<!-- #endregion -->
+			</div>
+		</header>
+		<main class="pb-20 pt-2">
+			<div class="not-prose">
+				<!-- #region home-->
+				<template x-route="/" x-template="/pages/home.html"></template>
+				<!-- #endregion -->
+				<!-- #region maximization page-->
+				<template x-route="/:warframe/:ability?" x-handler="[getIndicies]"
+					x-template="/pages/maximization.html"></template>
+				<!-- #endregion -->
+			</div>
+		</main>
+		<footer>
+			<div class="text-center text-sm text-gray-500">
+				<span class="relative flex justify-center">
+					<div
+						class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75">
+					</div>
+					<span class="relative z-10 bg-white dark:bg-gray-900 px-6">Maxiframe</span>
+				</span>
+				<p>Warframe ability maximization web app.</p>
+				<p>Made by <a target="_blank" href="https://github.com/rehhouari"
+						class="underline text-black font-500 dark:text-white">Rafik
+						@rehhouari</a>
+					<a target="_blank" href="https://github.com/rehhouari/maxiframe"
+						class="underline text-black font-500 dark:text-white">(Source)</a>
+				</p>
+			</div>
+		</footer>
+		<script>
+			// This is a hack to get vite-plugin-pwa to generate a sw.js file.
+			// Do not remove this script tag.
+		</script>
+	</div>
+</body>
+
+</html>

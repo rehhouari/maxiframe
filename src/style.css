@@ -1,0 +1,172 @@
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
+
+[x-cloak] { display: none !important; }
+
+
+.homepage {
+	@apply text-center;
+}
+
+.homepage p {
+	@apply max-w-lg mx-auto  dark:text-gray-400;
+}
+
+.homepage h3 {
+	@apply text-lg pt-4
+}
+
+.homepage .name {
+	@apply text-brand-primary
+}
+
+/*#region search results */
+
+.search-results {
+	@apply absolute w-full rounded-lg border-interactable bg-standout shadow-lg z-50;
+}
+
+.search-results > ul {
+	@apply max-h-64 space-y-1 overflow-auto p-2 grid grid-cols-1;
+}
+
+.search-result a div {
+	@apply flex items-center justify-between rounded-md px-4 py-2 h-10 text-xs font-medium text-gray-700 hoverable;
+}
+
+.tag {
+	@apply block rounded bg-gray-900 px-1.5 py-0.5 text-xs text-white;
+}
+
+/*#endregion*/
+
+/*#region searchbar*/
+
+.search-bar input {
+	@apply w-full rounded-md py-2.5 pe-10 shadow-sm text-sm border-interactable ring-brand-primary! bg-standout;
+}
+
+.search-bar .icon {
+	@apply absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-600;
+}
+
+/*#endregion*/
+
+.wf-container {
+	@apply space-y-6;
+}
+
+.wf-card {
+	@apply flex flex-col space-y-4;
+}
+
+.wf-card .profile {
+	@apply flex flex-col space-y-2 items-center justify-center no-underline;
+}
+
+.wf-card .profile span {
+	@apply text-xl font-bold;
+}
+
+.image-wf {
+	@apply rounded w-18;
+}
+
+/*#region abilities*/
+
+.abilities {
+	@apply grid grid-cols-4 w-full max-w-130 mx-auto gap-4 grid-items-baseline;
+}
+
+.ability {
+	@apply text-xs font-500 pt-2 no-underline rounded-4 border-interactable hoverable transition-all;
+}
+
+.ability div {
+	@apply grid grid-rows-2 grid-items-center grid-justify-center;
+}
+
+.ability div img {
+	@apply w-10 invert dark:filter-none mx-auto;
+}
+
+.ability div  span {
+	@apply text-center;
+}
+
+.ability.selected {
+	@apply bg-brand-primary text-white dark:(bg-gray-800 text-white);
+}
+
+.ability.selected div img {
+	@apply  filter-none;
+}
+
+/*#endregion*/
+
+.wf-notfound {
+	@apply text-center p-8;
+}
+
+.wf-image-credits {
+	@apply flex text-xs justify-center text-center text-gray-600;
+}
+
+/*#region ability modifiers*/
+
+.ability-modifier {
+	@apply flex justify-between items-center sm:gap-x-4;
+}
+
+.number-input {
+	@apply items-center rounded border border-gray-200 dark:border-gray-800;
+}
+
+.number-input input {
+	@apply h-8 w-14 text-sm border-transparent text-center [-moz-appearance:_textfield] dark:bg-gray-900 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-non;
+}
+
+.number-input button {
+	@apply h-8 w-8  text-gray-600 transition hover:opacity-75 dark:text-gray-300;
+}
+
+.ability-modifiers {
+	@apply text-sm  flex flex-col gap-y-2;
+}
+
+/*#endregion*/
+
+
+.maximization-layout {
+	@apply flex flex-col gap-y-4 sm:(flex-row-reverse gap-x-12 gap-y-none) ;
+}
+
+.abilities-stats {
+	@apply flex flex-col flex-1 gap-y-4;
+}
+.ability-stats {
+	@apply border border-gray-200 dark:border-gray-800 rounded-4 p-4;
+}
+.ability-stats h4 {
+	@apply text-lg font-medium;
+}
+.ability-stats .stats {
+	@apply text-sm space-y-2;
+}
+.ability-stats .stats div {
+	@apply flex justify-start gap-x-4;
+}
+.ability-stats .stats .stat-value {
+	@apply font-600 min-w-16 text-start;
+}
+.ability-stats .stats .negative {
+	@apply text-red;
+}
+.ability-stats .stats .positive {
+	@apply text-green;
+}

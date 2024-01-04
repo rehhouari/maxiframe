@@ -1,0 +1,125 @@
+[
+	{
+		"warframeName": "Ash",
+		"wikiaThumbnail": "https://static.wikia.nocookie.net/warframe/images/b/b1/Ash.png",
+		"abilities": [
+			{
+				"id": "shuriken",
+				"name": "Shuriken",
+				"description": "Launches a spinning blade of pain, dealing high damage and impaling enemies to walls.",
+				"imageName": "shuriken.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			},
+			{
+				"id": "smoke_screen",
+				"name": "Smoke Screen",
+				"description": "Drops a smoke bomb that stuns enemies and obscures their vision, rendering Ash invisible for a short time.",
+				"imageName": "smoke-screen.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			},
+			{
+				"id": "teleport",
+				"name": "Teleport",
+				"imageName": "teleport.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			},
+			{
+				"id": "blade_storm",
+				"name": "Blade Storm",
+				"description": "Project fierce shadow clones of Ash upon groups of distant enemies. Join the fray using Teleport.",
+				"imageName": "blade-storm.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			}
+		]
+	},
+	{
+		"warframeName": "Zephyr",
+		"wikiaThumbnail": "https://static.wikia.nocookie.net/warframe/images/3/3e/Zephyr.png",
+		"abilities": [
+			{
+				"id": "tail_wind",
+				"name": "Tail Wind",
+				"description": "Hold while airborne to hover Zephyr with reduced movement. From the air, tap to dash forward, or aim down to dive bomb enemies below.",
+				"imageName": "tail-wind.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"stats": [
+					{
+						"name": "Damage",
+						"base": 500,
+						"value": 50,
+						"formula": "STR * BASE",
+						"unit": "",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 0
+					},
+					{
+						"name": "Speed",
+						"base": 30,
+						"value": 30,
+						"formula": "STR * BASE",
+						"unit": "s",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 2
+					},
+					{
+						"name": "Hover height",
+						"base": 12.5,
+						"value": 12.5,
+						"formula": "STR * BASE",
+						"unit": "m",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 2
+					},
+					{
+						"name": "Contact range",
+						"base": 30,
+						"value": 30,
+						"formula": "STR * BASE",
+						"unit": "m",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 2
+					},
+					{
+						"name": "Explosion range",
+						"base": 30,
+						"value": 30,
+						"formula": "STR * BASE",
+						"unit": "m",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 2
+					},
+					{
+						"name": "Energy",
+						"base": 30,
+						"value": 30,
+						"formula": "STR * BASE",
+						"unit": "-",
+						"prefix": "",
+						"toFixedigitsAfterDecimalPointd": 2
+					}
+				]
+			},
+			{
+				"id": "airburst",
+				"name": "Airburst",
+				"description": "Launch a burst of massively dense air. Hold to send enemies flying, tap to pull them toward the burst. Damage increases per enemy hit.",
+				"imageName": "airburst.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			},
+			{
+				"id": "turbulence",
+				"name": "Turbulence",
+				"description": "Creates a wind shield around Zephyr, redirecting all incoming projectiles.",
+				"imageName": "turbulence.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			},
+			{
+				"id": "tornado",
+				"name": "Tornado",
+				"description": "Create deadly tornadoes that seek out and engulf enemies. Tornadoes deal the elemental Damage Type they absorb the most. Shoot engulfed enemies to inflict extra damage. Hold for stationary tornadoes or tap for wandering ones.",
+				"imageName": "tornado.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png"
+			}
+		]
+	}
+]

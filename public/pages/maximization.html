@@ -1,0 +1,70 @@
+<div class="">
+	<template x-if="selectedFrameIndex > -1">
+		<div class="wf-container">
+			<div class="wf-card">
+				<a :href="`/${data[selectedFrameIndex].warframeName}`" class="profile">
+					<span x-text="data[selectedFrameIndex].warframeName"></span>
+					<img :src="data[selectedFrameIndex].wikiaThumbnail" class="image-wf" alt="" />
+				</a>
+				<div class="abilities">
+					<template x-for="ability in getAbilities()" :key="ability.id">
+						<a :href="`/${$router.params.warframe}/${ability.id}`" class="ability"
+							:class="$router.params.ability?.toLowerCase() == ability.id && 'selected'">
+							<div>
+								<img :src="ability.wikiaImage" alt="">
+								<span x-text="ability.name"></span>
+							</div>
+						</a>
+					</template>
+				</div>
+			</div>
+			<div class="maximization-layout">
+				<div class="ability-modifiers">
+					<template x-for="(modifier, key) in abilityModifiers" :key="index">
+						<div class="ability-modifier">
+							<label :for="key">Ability <span x-text="key"></span></label>
+
+							<div class="number-input">
+								<button type="button" x-on:click="modifier-=5">
+									&minus;
+								</button>
+
+								<input type="number" :id="key" x-model="modifier" />
+
+								<button type="button" x-on:click="modifier+=5">
+									&plus;
+								</button>
+							</div>
+						</div>
+					</template>
+				</div>
+				<div class="abilities-stats">
+					<template x-for="ability in getAbilities(true)" :key="ability.id">
+						<div class="ability-stats">
+							<h4 x-text="ability.name"></h4>
+							<div class="stats">
+								<template x-for="stat, index in ability.stats">
+									<div>
+										<span x-text="stat.value + stat.unit" class="stat-value"
+											x-bind:class="{'negative': stat.value < stat.base, 'positive': stat.value > stat.base}"></span>
+										<span x-text="stat.name"></span>
+									</div>
+								</template>
+							</div>
+						</div>
+					</template>
+				</div>
+			</div>
+			<!--div class="wf-image-credits">
+				<p>Images belong to <a href="https://warframe.fandom.com">Warframe Wiki</a></p>
+			</div-->
+		</div>
+	</template>
+	<template x-if="selectedFrameIndex == -1">
+		<div class="wf-notfound">
+			<p class="">
+				Specified Warframe could not be found.
+			</p>
+		</div>
+	</template>
+</div>
