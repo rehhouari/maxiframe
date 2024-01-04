@@ -26,4 +26,12 @@ Alpine.data('maxiframe', maxiframe)
 window.Alpine = Alpine
 Alpine.start()
 
-window.clamp = (num, min, max) => Math.min(Math.max(num, min), max)
+// allow focus outline when tabbing
+document.body.addEventListener(
+	'keyup',
+	(e) =>
+		e.key === 'Tab' &&
+		document.documentElement.classList.remove(
+			'no-focus-outline'
+		)
+)

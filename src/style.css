@@ -4,12 +4,20 @@ import 'virtual:uno.css'
   font-family: Inter, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 }
+
 @supports (font-variation-settings: normal) {
   :root { font-family: InterVariable, sans-serif; }
 }
 
+
 [x-cloak] { display: none !important; }
 
+.no-focus-outline a:not(.keepfocus):focus,
+.no-focus-outline select:not(.keepfocus):focus,
+.no-focus-outline input:not(.keepfocus):focus,
+.no-focus-outline button:not(.keepfocus):focus {
+	outline: none !important;
+}
 
 .homepage {
 	@apply text-center;
