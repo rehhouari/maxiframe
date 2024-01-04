@@ -2,11 +2,6 @@ import '@unocss/reset/tailwind.css'
 
 import 'virtual:uno.css'
 
-import { registerSW } from 'virtual:pwa-register'
-
-registerSW({ immediate: true })
-
-
 /// Import Alpine.js
 import Alpine from 'alpinejs'
 /// Import Alpine.js plugins
