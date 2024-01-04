@@ -20,36 +20,39 @@
 			</div>
 			<div class="maximization-layout">
 				<div class="ability-modifiers">
-					<template x-for="(modifier, key) in getAbilityModifiers()" :key="key">
-						<div class="ability-modifier">
-							<label :for="key" x-text="modifier.name"></label>
+					<div>
+						<template x-for="(modifier, key) in getAbilityModifiers()" :key="key">
+							<div class="ability-modifier">
+								<label :for="key" x-text="modifier.name"></label>
 
-							<template x-if="modifier.type == 'percentage'">
-								<div class="number-input">
-									<button type="button" x-on:click="modifier.value-=5">
-										&minus;
-									</button>
+								<template x-if="modifier.type == 'percentage'">
+									<div class="number-input">
+										<button type="button" x-on:click="modifier.value-=5">
+											&minus;
+										</button>
 
-									<input type="number" :id="key" x-model="modifier.value" min="0" max="9999" />
+										<input type="number" :id="key" x-model="modifier.value" min="0" max="9999" />
 
-									<button type="button" x-on:click="modifier.value+=5">
-										&plus;
-									</button>
-								</div>
-							</template>
-							<template x-if="modifier.type == 'bool'">
-								<div class="toggle" @click="modifier.value = !modifier.value">
-									<input x-model="modifier.value" type="checkbox" :id="key" class="peer sr-only" />
+										<button type="button" x-on:click="modifier.value+=5">
+											&plus;
+										</button>
+									</div>
+								</template>
+								<template x-if="modifier.type == 'bool'">
+									<div class="toggle" @click="modifier.value = !modifier.value">
+										<input x-model="modifier.value" type="checkbox" :id="key"
+											class="peer sr-only" />
 
-									<span :class="modifier.value && 'bg-brand-primary!'"
-										class="absolute inset-0 rounded-full transition bg-gray-300 dark:bg-gray-600"></span>
+										<span :class="modifier.value && 'bg-brand-primary!'"
+											class="absolute inset-0 rounded-full transition bg-gray-300 dark:bg-gray-600"></span>
 
-									<span :class="{ 'start-0': !modifier.value, 'start-6': modifier.value }"
-										class="absolute inset-y-0 m-1 h-5 w-5 rounded-full bg-white transition-all"></span>
-								</div>
-							</template>
-						</div>
-					</template>
+										<span :class="{ 'start-0': !modifier.value, 'start-6': modifier.value }"
+											class="absolute inset-y-0 m-1 h-5 w-5 rounded-full bg-white transition-all"></span>
+									</div>
+								</template>
+							</div>
+						</template>
+					</div>
 				</div>
 				<div class="abilities-stats">
 					<template x-for="(ability, abilityIndex) in getAbilities()" :key="ability.id">

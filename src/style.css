@@ -119,7 +119,20 @@ import 'virtual:uno.css'
 	@apply flex text-xs justify-center text-center text-gray-600;
 }
 
+
+.maximization-layout {
+	@apply flex flex-col gap-y-4 sm:(flex-row-reverse gap-x-12 gap-y-none) ;
+}
+
 /*#region ability modifiers*/
+
+.ability-modifiers {
+	@apply text-sm  flex-grow-0;
+}
+
+.ability-modifiers > div {
+	@apply flex flex-col gap-y-2 border border-gray-200 dark:border-gray-800 rounded-4 p-4 ;
+}
 
 .ability-modifier {
 	@apply flex justify-between items-center sm:gap-x-4;
@@ -137,9 +150,7 @@ import 'virtual:uno.css'
 	@apply h-8 w-8  text-gray-600 transition hover:opacity-75 dark:text-gray-300;
 }
 
-.ability-modifiers {
-	@apply text-sm  flex flex-col gap-y-2;
-}
+
 
 .toggle {
 	@apply relative h-7 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]";
@@ -147,9 +158,6 @@ import 'virtual:uno.css'
 /*#endregion*/
 
 
-.maximization-layout {
-	@apply flex flex-col gap-y-4 sm:(flex-row-reverse gap-x-12 gap-y-none) ;
-}
 
 .abilities-stats {
 	@apply flex flex-col flex-1 gap-y-4;
