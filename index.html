@@ -74,7 +74,7 @@
 							<div>
 								<template x-for="warframe in data" :key="warframe.warframeName">
 									<li class="search-result">
-										<a :href="`/${warframe.warframeName}`" @click="showResults = false">
+										<a :href="`/${warframe.warframeName}`">
 											<div>
 												<span x-text="warframe.warframeName"></span>
 											</div>
@@ -86,8 +86,7 @@
 						<template x-for="(result, index) in searchResults()" :key="index">
 							<li class="search-result">
 								<template x-if="result.matches[0].key == 'abilities.id'">
-									<a :href="`/${result.item.warframeName}/${getAbilityIdFromSearchResult(result)}`"
-										@click="showResults = false">
+									<a :href="`/${result.item.warframeName}/${getAbilityIdFromSearchResult(result)}`">
 										<div>
 											<span x-text="getAbilityNameFromSearchResult(result)"></span>
 											<span class="tag" x-text="result.item.warframeName"></span>

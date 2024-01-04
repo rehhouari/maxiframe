@@ -78,6 +78,7 @@ export default () => ({
 		} else {
 			this.selectedAbilityIndex = -1
 		}
+		this.showResults = false
 	},
 	//#endregion
 
@@ -105,10 +106,7 @@ export default () => ({
 
 	//#region maximization page
 
-	getAbilities(selected = false) {
-		if (selected && this.selectedAbilityIndex != -1) {
-			return [this.data[this.selectedFrameIndex].abilities[this.selectedAbilityIndex]]
-		}
+	getAbilities() {
 		return this.data[this.selectedFrameIndex].abilities
 	},
 
@@ -169,6 +167,7 @@ export default () => ({
 		return stat.biggerIsPositive ? biggerThanBase : !biggerThanBase
 
 	},
+
 	getStatColor(stat) {
 		if (stat.base == stat.value) return ''
 		return this.isStatPositive(stat) ? 'positive' : 'negative'

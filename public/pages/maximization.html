@@ -53,8 +53,9 @@
 					</template>
 				</div>
 				<div class="abilities-stats">
-					<template x-for="ability, abilityIndex in getAbilities(true)" :key="ability.id">
-						<div class="ability-stats">
+					<template x-for="(ability, abilityIndex) in getAbilities()" :key="ability.id">
+						<div class="ability-stats"
+							x-show="selectedAbilityIndex == -1 || selectedAbilityIndex == abilityIndex">
 							<h4 x-text="ability.name"></h4>
 							<div class="stats">
 								<template x-for="stat, statIndex in getAbilityStats(abilityIndex)">
