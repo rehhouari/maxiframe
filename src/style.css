@@ -84,7 +84,7 @@
 }
 
 .ability {
-	@apply text-xs font-500 pt-2 no-underline rounded-4 border-interactable hoverable transition-all;
+	@apply text-xs font-500 pt-2 no-underline rounded-4 border-interactable hoverable;
 }
 
 .ability div {
@@ -100,7 +100,7 @@
 }
 
 .ability.selected {
-	@apply bg-brand-primary text-white dark:(bg-gray-800 text-white);
+	@apply bg-brand-primary text-white dark:(bg-gray-800);
 }
 
 .ability.selected div img {
