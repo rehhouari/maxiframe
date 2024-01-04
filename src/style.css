@@ -1,3 +1,5 @@
+import 'virtual:uno.css'
+
 :root {
   font-family: Inter, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
@@ -73,8 +75,8 @@
 	@apply text-xl font-bold;
 }
 
-.image-wf {
-	@apply rounded w-18;
+.wf-card .profile img {
+	@apply rounded w-18 select-none;
 }
 
 /*#region abilities*/
@@ -92,7 +94,7 @@
 }
 
 .ability div img {
-	@apply w-10 invert dark:filter-none mx-auto;
+	@apply w-10 invert dark:filter-none mx-auto select-none;
 }
 
 .ability div  span {
@@ -139,6 +141,9 @@
 	@apply text-sm  flex flex-col gap-y-2;
 }
 
+.toggle {
+	@apply relative h-7 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]";
+}
 /*#endregion*/
 
 
@@ -153,7 +158,7 @@
 	@apply border border-gray-200 dark:border-gray-800 rounded-4 p-4;
 }
 .ability-stats h4 {
-	@apply text-lg font-medium;
+	@apply text-lg font-medium pb-2;
 }
 .ability-stats .stats {
 	@apply text-sm space-y-2;
@@ -169,4 +174,15 @@
 }
 .ability-stats .stats .positive {
 	@apply text-green;
+}
+
+
+/*#endregion*/
+
+.link {
+	@apply underline text-black! font-500 dark:(text-white!);
+}
+
+label {
+	@apply cursor-pointer;
 }

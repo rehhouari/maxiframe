@@ -1,5 +1,5 @@
 <div class="">
-	<template x-if="selectedFrameIndex > -1">
+	<template x-if="selectedFrameIndex != -1">
 		<div class="wf-container">
 			<div class="wf-card">
 				<a :href="`/${data[selectedFrameIndex].warframeName}`" class="profile">
@@ -11,7 +11,7 @@
 						<a :href="`/${$router.params.warframe}/${ability.id}`" class="ability"
 							:class="$router.params.ability?.toLowerCase() == ability.id && 'selected'">
 							<div>
-								<img :src="ability.wikiaImage" alt="">
+								<img :src="ability.wikiaImage">
 								<span x-text="ability.name"></span>
 							</div>
 						</a>
@@ -20,33 +20,47 @@
 			</div>
 			<div class="maximization-layout">
 				<div class="ability-modifiers">
-					<template x-for="(modifier, key) in abilityModifiers" :key="index">
+					<template x-for="(modifier, key) in getAbilityModifiers()" :key="key">
 						<div class="ability-modifier">
-							<label :for="key">Ability <span x-text="key"></span></label>
+							<label :for="key" x-text="modifier.name"></label>
 
-							<div class="number-input">
-								<button type="button" x-on:click="modifier-=5">
-									&minus;
-								</button>
+							<template x-if="modifier.type == 'percentage'">
+								<div class="number-input">
+									<button type="button" x-on:click="modifier.value-=5">
+										&minus;
+									</button>
 
-								<input type="number" :id="key" x-model="modifier" />
+									<input type="number" :id="key" x-model="modifier.value" min="0" max="9999" />
 
-								<button type="button" x-on:click="modifier+=5">
-									&plus;
-								</button>
-							</div>
+									<button type="button" x-on:click="modifier.value+=5">
+										&plus;
+									</button>
+								</div>
+							</template>
+							<template x-if="modifier.type == 'bool'">
+								<div class="toggle" @click="modifier.value = !modifier.value">
+									<input x-model="modifier.value" type="checkbox" :id="key" class="peer sr-only" />
+
+									<span
+										:class="{ 'bg-gray-300': !modifier.value, 'bg-brand-primary': modifier.value }"
+										class="absolute inset-0 rounded-full transition"></span>
+
+									<span :class="{ 'start-0': !modifier.value, 'start-6': modifier.value }"
+										class="absolute inset-y-0 m-1 h-5 w-5 rounded-full bg-white transition-all"></span>
+								</div>
+							</template>
 						</div>
 					</template>
 				</div>
 				<div class="abilities-stats">
-					<template x-for="ability in getAbilities(true)" :key="ability.id">
+					<template x-for="ability, abilityIndex in getAbilities(true)" :key="ability.id">
 						<div class="ability-stats">
 							<h4 x-text="ability.name"></h4>
 							<div class="stats">
-								<template x-for="stat, index in ability.stats">
+								<template x-for="stat, statIndex in getAbilityStats(abilityIndex)">
 									<div>
-										<span x-text="stat.value + stat.unit" class="stat-value"
-											x-bind:class="{'negative': stat.value < stat.base, 'positive': stat.value > stat.base}"></span>
+										<span x-text="stat.prefix + stat.value + stat.unit" class="stat-value"
+											:class="getStatColor(stat)"></span>
 										<span x-text="stat.name"></span>
 									</div>
 								</template>
@@ -55,9 +69,9 @@
 					</template>
 				</div>
 			</div>
-			<!--div class="wf-image-credits">
-				<p>Images belong to <a href="https://warframe.fandom.com">Warframe Wiki</a></p>
-			</div-->
+			<div class="wf-image-credits">
+				<p>Images belong to <a href="https://warframe.fandom.com" class="link">Warframe Wiki</a></p>
+			</div>
 		</div>
 	</template>
 	<template x-if="selectedFrameIndex == -1">

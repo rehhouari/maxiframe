@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" class="no-focus-outline">
 
 <head>
@@ -43,7 +44,7 @@
 					<div class="md:flex md:items-center md:gap-12">
 						<a class="block" href="/">
 							<span class="sr-only">Home</span>
-							<img src="/favicon-76x76.png" alt="" srcset="" class="animate-pulse inline">
+							<img src="/favicon-76x76.png" alt="" srcset="" class="animate-pulse inline select-none">
 						</a>
 					</div>
 				</div>
@@ -85,10 +86,10 @@
 						<template x-for="(result, index) in searchResults()" :key="index">
 							<li class="search-result">
 								<template x-if="result.matches[0].key == 'abilities.id'">
-									<a :href="`/${result.item.warframeName}/${getAbilityId(result)}`"
+									<a :href="`/${result.item.warframeName}/${getAbilityIdFromSearchResult(result)}`"
 										@click="showResults = false">
 										<div>
-											<span x-text="getAbilityName(result)"></span>
+											<span x-text="getAbilityNameFromSearchResult(result)"></span>
 											<span class="tag" x-text="result.item.warframeName"></span>
 										</div>
 									</a>
@@ -132,11 +133,9 @@
 					<span class="relative z-10 bg-white dark:bg-gray-900 px-6">Maxiframe</span>
 				</span>
 				<p>Warframe ability maximization web app.</p>
-				<p>Made by <a target="_blank" href="https://github.com/rehhouari"
-						class="underline text-black font-500 dark:text-white">Rafik
+				<p>Made by <a target="_blank" href="https://github.com/rehhouari" class="link">Rafik
 						@rehhouari</a>
-					<a target="_blank" href="https://github.com/rehhouari/maxiframe"
-						class="underline text-black font-500 dark:text-white">(Source)</a>
+					<a target="_blank" href="https://github.com/rehhouari/maxiframe" class="link">(Source)</a>
 				</p>
 			</div>
 		</footer>

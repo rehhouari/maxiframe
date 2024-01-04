@@ -12,6 +12,7 @@ import PineconeRouter from 'pinecone-router'
 
 import maxiframe from "./maxiframe.js"
 
+
 import Fuse from 'fuse.js'
 window.Fuse = Fuse
 
@@ -21,5 +22,8 @@ Alpine.plugin(focus)
 Alpine.plugin(persist)
 Alpine.plugin(Clipboard)
 Alpine.data('maxiframe', maxiframe)
+
 window.Alpine = Alpine
 Alpine.start()
+
+window.clamp = (num, min, max) => Math.min(Math.max(num, min), max)

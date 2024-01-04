@@ -32,9 +32,11 @@ export default defineConfig({
 				/\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
 				// include js/ts files
 				'src/**/*.{js,ts,astro}',
-				'public/pages/maximization.html'
 			],
-		}
+		},
+		filesystem: [
+			'public/pages/*.html'
+		]
 	},
 	theme: {
 		colors: {

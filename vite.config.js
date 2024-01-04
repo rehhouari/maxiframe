@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
 	plugins: [
 		UnoCSS({
-			injectReset: true
+			injectReset: true,
 		}),
 		VitePWA()
 	],
