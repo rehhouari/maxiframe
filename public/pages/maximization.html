@@ -41,9 +41,8 @@
 								<div class="toggle" @click="modifier.value = !modifier.value">
 									<input x-model="modifier.value" type="checkbox" :id="key" class="peer sr-only" />
 
-									<span
-										:class="{ 'bg-gray-300': !modifier.value, 'bg-brand-primary': modifier.value }"
-										class="absolute inset-0 rounded-full transition"></span>
+									<span :class="modifier.value && 'bg-brand-primary!'"
+										class="absolute inset-0 rounded-full transition bg-gray-300 dark:bg-gray-600"></span>
 
 									<span :class="{ 'start-0': !modifier.value, 'start-6': modifier.value }"
 										class="absolute inset-y-0 m-1 h-5 w-5 rounded-full bg-white transition-all"></span>

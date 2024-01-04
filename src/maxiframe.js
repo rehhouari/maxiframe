@@ -138,7 +138,8 @@ export default () => ({
 
 		// add frame-specific extra modifiers
 		for (const key in this.data[this.selectedFrameIndex].extraModifiers) {
-			context[key] = this.data[this.selectedFrameIndex].extraModifiers[key].value
+			let modifier = this.data[this.selectedFrameIndex].extraModifiers[key]
+			context[key] = modifier.type == 'percentage' ? modifier.value / 100 : modifier.value
 		}
 
 		// evaluate a formula in context
