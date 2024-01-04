@@ -68,7 +68,7 @@ div {
 /*#region searchbar*/
 
 .search-bar input {
-	@apply w-full rounded-md py-2.5 pe-10  shadow-sm text-sm border-interactable ring-brand-primary! bg-standout;
+	@apply w-full rounded-md py-2.5 pe-10  shadow-sm text-sm border-interactable bg-standout;
 }
 
 .search-bar .icon {
@@ -211,4 +211,8 @@ div {
 
 label {
 	@apply cursor-pointer;
+}
+
+input {
+	@apply ring-brand-primary!;
 }
