@@ -7,6 +7,8 @@ export default defineConfig({
 		UnoCSS({
 			injectReset: true,
 		}),
-		VitePWA()
+		VitePWA({
+			registerType: 'autoUpdate'
+		})
 	],
 })
