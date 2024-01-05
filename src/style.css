@@ -34,7 +34,7 @@ div {
 }
 
 .homepage p {
-	@apply max-w-lg mx-auto  dark:text-gray-400;
+	@apply max-w-lg mx-auto  ;
 }
 
 .homepage h3 {
@@ -52,11 +52,15 @@ div {
 }
 
 .search-results > ul {
-	@apply max-h-64 space-y-1 overflow-auto p-2 grid grid-cols-1;
+	@apply max-h-64 overflow-auto list-none p-2 m-0 grid grid-cols-1;
 }
 
 .search-result a div {
-	@apply flex items-center justify-between rounded-md px-4 py-2 h-10 text-xs font-medium text-gray-700 hoverable;
+	@apply flex items-center justify-between rounded-md px-4 py-2 h-10 text-3 font-medium hoverable;
+}
+
+.search-result a {
+	@apply no-underline;
 }
 
 .tag {
@@ -72,7 +76,7 @@ div {
 }
 
 .search-bar .icon {
-	@apply absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-600;
+	@apply absolute inset-y-0 end-0 grid w-10 place-content-center ;
 }
 
 /*#endregion*/
@@ -104,7 +108,7 @@ div {
 }
 
 .ability {
-	@apply text-xs font-500 pt-2 no-underline rounded-4 border-interactable hoverable;
+	@apply no-underline! text-xs font-500 pt-2 rounded-4 border-interactable hoverable;
 }
 
 .ability div {
@@ -134,7 +138,7 @@ div {
 }
 
 .wf-image-credits {
-	@apply flex text-xs justify-center text-center text-gray-600;
+	@apply flex text-xs justify-center text-center prose-gray dark:prose-invert;
 }
 
 
@@ -149,11 +153,15 @@ div {
 }
 
 .ability-modifiers > div {
-	@apply flex flex-col gap-y-2 border border-gray-200 dark:border-gray-800 rounded-4 p-4 ;
+	@apply flex flex-col gap-y-3 border border-gray-200 dark:border-gray-800 rounded-4 p-4 ;
 }
 
 .ability-modifier {
 	@apply flex justify-between items-center sm:gap-x-4;
+}
+
+.ability-modifier label {
+	@apply text-[--un-prose-links];
 }
 
 .number-input {
@@ -165,7 +173,7 @@ div {
 }
 
 .number-input button {
-	@apply h-8 w-8  text-gray-600 transition hover:opacity-75 dark:text-gray-300;
+	@apply h-8 w-8   transition hover:opacity-75 ;
 }
 
 
@@ -181,10 +189,7 @@ div {
 	@apply flex flex-col flex-1 gap-y-4;
 }
 .ability-stats {
-	@apply border border-gray-200 dark:border-gray-800 rounded-4 p-4;
-}
-.ability-stats h4 {
-	@apply text-lg font-medium pb-2;
+	@apply border border-gray-200 dark:border-gray-800 rounded-4 px-4 pb-4;
 }
 .ability-stats .stats {
 	@apply text-sm space-y-2;
@@ -193,21 +198,18 @@ div {
 	@apply flex justify-start gap-x-4;
 }
 .ability-stats .stats .stat-value {
-	@apply font-600 min-w-16 text-start;
+	@apply font-600  min-w-18 text-[--un-prose-links] text-start;
+	//color: var(--un-prose-links)
 }
 .ability-stats .stats .negative {
-	@apply text-red;
+	@apply text-red-500;
 }
 .ability-stats .stats .positive {
-	@apply text-green;
+	@apply text-green-500;
 }
 
 
 /*#endregion*/
-
-.link {
-	@apply underline text-black! font-500 dark:(text-white!);
-}
 
 label {
 	@apply cursor-pointer;

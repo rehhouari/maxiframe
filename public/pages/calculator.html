@@ -1,14 +1,14 @@
-<div class="">
+<div>
 	<template x-if="selectedFrameIndex != -1">
 		<div class="wf-container">
 			<div class="wf-card">
-				<a :href="`/${data[selectedFrameIndex].warframeName}`" class="profile">
-					<span x-text="data[selectedFrameIndex].warframeName"></span>
+				<a :href="'/' + data[selectedFrameIndex].name" class="profile">
+					<span x-text="data[selectedFrameIndex].name"></span>
 					<img :src="data[selectedFrameIndex].wikiaThumbnail" class="image-wf" alt="" />
 				</a>
 				<div class="abilities">
-					<template x-for="ability in getAbilities()" :key="ability.id">
-						<a :href="`/${$router.params.warframe}/${ability.id}`" class="ability"
+					<template x-for="ability, index in getAbilities()" :key="ability.id">
+						<a :href="getAbilityLink(ability, index)" class="ability"
 							:class="$router.params.ability?.toLowerCase() == ability.id && 'selected'">
 							<div>
 								<img :src="ability.wikiaImage">
@@ -24,14 +24,14 @@
 						<template x-for="(modifier, key) in getAbilityModifiers()" :key="key">
 							<div class="ability-modifier">
 								<label :for="key" x-text="modifier.name"></label>
-
 								<template x-if="modifier.type == 'percentage'">
 									<div class="number-input">
 										<button type="button" x-on:click="modifier.value-=5">
 											&minus;
 										</button>
 
-										<input type="number" :id="key" x-model="modifier.value" min="0" max="9999" />
+										<input type="number" :id="key" x-model.number.debounce="modifier.value" min="0"
+											max="9999" />
 
 										<button type="button" x-on:click="modifier.value+=5">
 											&plus;
@@ -40,7 +40,7 @@
 								</template>
 								<template x-if="modifier.type == 'bool'">
 									<div class="toggle" @click="modifier.value = !modifier.value">
-										<input x-model="modifier.value" type="checkbox" :id="key"
+										<input x-model.boolean="modifier.value" type="checkbox" :id="key"
 											class="peer sr-only" />
 
 										<span :class="modifier.value && 'bg-brand-primary!'"
@@ -55,12 +55,11 @@
 					</div>
 				</div>
 				<div class="abilities-stats">
-					<template x-for="(ability, abilityIndex) in getAbilities()" :key="ability.id">
-						<div class="ability-stats"
-							x-show="selectedAbilityIndex == -1 || selectedAbilityIndex == abilityIndex">
+					<template x-for="(ability, index) in getAbilities(true)" :key="ability.id">
+						<div class="ability-stats">
 							<h4 x-text="ability.name"></h4>
 							<div class="stats">
-								<template x-for="stat, statIndex in getAbilityStats(abilityIndex)">
+								<template x-for="stat in ability.stats">
 									<div>
 										<span x-text="stat.prefix + stat.value + stat.unit" class="stat-value"
 											:class="getStatColor(stat)"></span>
@@ -79,9 +78,10 @@
 	</template>
 	<template x-if="selectedFrameIndex == -1">
 		<div class="wf-notfound">
-			<p class="">
-				Specified Warframe could not be found.
+			<p>
+				Invalid Warframe selected.
 			</p>
+			<a href="/" class="link">Go Home</a>
 		</div>
 	</template>
 </div>

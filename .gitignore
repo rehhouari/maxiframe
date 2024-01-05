@@ -17,3 +17,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+router.esm.js
+router.esm.js.map

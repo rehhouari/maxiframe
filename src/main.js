@@ -22,9 +22,10 @@ Alpine.plugin(focus)
 Alpine.plugin(persist)
 Alpine.plugin(Clipboard)
 Alpine.data('maxiframe', maxiframe)
-
 window.Alpine = Alpine
 Alpine.start()
+
+
 
 // allow focus outline when tabbing
 document.body.addEventListener(
@@ -35,3 +36,4 @@ document.body.addEventListener(
 			'no-focus-outline'
 		)
 )
+

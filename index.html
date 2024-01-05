@@ -36,7 +36,8 @@
 </head>
 
 <body class="container bg-white dark:(bg-gray-900 text-white)">
-	<div class="prose mx-auto" x-data="maxiframe()" @keydown.document.shift.d.prevent="toggleDarkMode()" x-cloak>
+	<div class="prose prose-slate dark:prose-invert mx-auto" x-data="maxiframe()"
+		@keydown.document.shift.d.prevent="toggleDarkMode()" x-cloak>
 		<header>
 			<!-- #region navbar-->
 			<div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-2">
@@ -68,15 +69,15 @@
 				</form>
 				<!-- #endregion -->
 				<!-- #region Search results-->
-				<div class="search-results not-prose" x-show="showResults">
+				<div class="search-results " x-show="showResults">
 					<ul>
 						<template x-if="isSearchEmpty()">
 							<div>
-								<template x-for="warframe in data" :key="warframe.warframeName">
+								<template x-for="warframe in data" :key="warframe.name">
 									<li class="search-result">
-										<a :href="`/${warframe.warframeName}`">
+										<a :href="'/' + warframe.name">
 											<div>
-												<span x-text="warframe.warframeName"></span>
+												<span x-text="warframe.name"></span>
 											</div>
 										</a>
 									</li>
@@ -86,26 +87,24 @@
 						<template x-for="(result, index) in searchResults()" :key="index">
 							<li class="search-result">
 								<template x-if="result.matches[0].key == 'abilities.id'">
-									<a :href="`/${result.item.warframeName}/${getAbilityIdFromSearchResult(result)}`">
+									<a :href="'/' + result.item.name + '/' + getAbilityIdFromSearchResult(result)">
 										<div>
 											<span x-text="getAbilityNameFromSearchResult(result)"></span>
-											<span class="tag" x-text="result.item.warframeName"></span>
+											<span class="tag" x-text="result.item.name"></span>
 										</div>
 									</a>
 								</template>
-								<template x-if="result.matches[0].key == 'warframeName'">
-									<a :href="`/${result.item.warframeName}`">
+								<template x-if="result.matches[0].key == 'name'">
+									<a :href="'/' + result.item.name">
 										<div>
-											<span x-text="result.item.warframeName"></span>
+											<span x-text="result.item.name"></span>
 										</div>
 									</a>
 								</template>
 							</li>
 						</template>
 						<template x-if="isSearchEmpty() == false && noResults && showResults">
-							<div>
-								<p class="text-sm text-center py-4 text-gray-600">No Results</p>
-							</div>
+							<p class="text-sm text-center py-4">No Results</p>
 						</template>
 					</ul>
 				</div>
@@ -113,18 +112,16 @@
 			</div>
 		</header>
 		<main class="pb-20 pt-6">
-			<div class="not-prose">
-				<!-- #region home-->
-				<template x-route="/" x-template="/pages/home.html"></template>
-				<!-- #endregion -->
-				<!-- #region maximization page-->
+			<div class="">
+				<template x-route="/" x-template.preload.target.app="/pages/home.html"></template>
+				<template x-route="notfound" x-template.target.app="/pages/404.html"></template>
 				<template x-route="/:warframe/:ability?" x-handler="[getIndicies]"
-					x-template.preload="/pages/maximization.html"></template>
-				<!-- #endregion -->
+					x-template.preload.target.app="/pages/calculator.html"></template>
+				<div id="app"></div>
 			</div>
 		</main>
 		<footer>
-			<div class="text-center text-sm text-gray-500">
+			<div class="text-center text-sm ">
 				<span class="relative flex justify-center">
 					<div
 						class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75">
@@ -132,9 +129,9 @@
 					<span class="relative z-10 bg-white dark:bg-gray-900 px-6">Maxiframe</span>
 				</span>
 				<p>Warframe ability maximization web app.</p>
-				<p>Made by <a target="_blank" href="https://github.com/rehhouari" class="link">Rafik
+				<p>Made by <a target="_blank" href="https://github.com/rehhouari">Rafik
 						@rehhouari</a>
-					<a target="_blank" href="https://github.com/rehhouari/maxiframe" class="link">(Source)</a>
+					<a target="_blank" href="https://github.com/rehhouari/maxiframe">(Source)</a>
 				</p>
 			</div>
 		</footer>
