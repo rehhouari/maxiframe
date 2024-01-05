@@ -16,14 +16,14 @@
 				"name": "Smoke Screen",
 				"description": "Drops a smoke bomb that stuns enemies and obscures their vision, rendering Ash invisible for a short time.",
 				"imageName": "smoke-screen.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/9/9c/SmokeScreen130xWhite.png",
 				"stats": []
 			},
 			{
 				"id": "teleport",
 				"name": "Teleport",
 				"imageName": "teleport.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/d/dc/Teleport130xWhite.png",
 				"stats": []
 			},
 			{
@@ -31,7 +31,7 @@
 				"name": "Blade Storm",
 				"description": "Project fierce shadow clones of Ash upon groups of distant enemies. Join the fray using Teleport.",
 				"imageName": "blade-storm.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/6/6e/BladeStorm130xWhite.png",
 				"stats": []
 			}
 		],
@@ -46,7 +46,7 @@
 				"name": "Tail Wind",
 				"description": "Hold while airborne to hover Zephyr with reduced movement. From the air, tap to dash forward, or aim down to dive bomb enemies below.",
 				"imageName": "tail-wind.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/6/6e/TailWind130xWhite.png",
 				"stats": [
 					{
 						"name": "Damage",
@@ -109,15 +109,43 @@
 				"name": "Airburst",
 				"description": "Launch a burst of massively dense air. Hold to send enemies flying, tap to pull them toward the burst. Damage increases per enemy hit.",
 				"imageName": "airburst.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
-				"stats": []
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/d/de/Airburst130xWhite.png",
+				"stats": [
+					{
+						"name": "Contact/explosion damage",
+						"base": 500,
+						"formula": "STR * BASE",
+						"unit": "",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 0,
+						"biggerIsPositive": true
+					},
+					{
+						"name": "Range",
+						"base": 8,
+						"formula": "RNG * BASE",
+						"unit": "m",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 2,
+						"biggerIsPositive": true
+					},
+					{
+						"name": "Energy",
+						"base": 50,
+						"formula": "EFF * BASE / (AIRBORNE ? 2 : 1)",
+						"unit": "",
+						"prefix": "",
+						"digitsAfterDecimalPoint": 0,
+						"biggerIsPositive": false
+					}
+				]
 			},
 			{
 				"id": "turbulence",
 				"name": "Turbulence",
 				"description": "Creates a wind shield around Zephyr, redirecting all incoming projectiles.",
 				"imageName": "turbulence.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/e/ec/Turbulence130xWhite.png",
 				"stats": []
 			},
 			{
@@ -125,7 +153,7 @@
 				"name": "Tornado",
 				"description": "Create deadly tornadoes that seek out and engulf enemies. Tornadoes deal the elemental Damage Type they absorb the most. Shoot engulfed enemies to inflict extra damage. Hold for stationary tornadoes or tap for wandering ones.",
 				"imageName": "tornado.png",
-				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/c/c8/Shuriken130xWhite.png",
+				"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/5/5e/Tornado130xWhite.png",
 				"stats": []
 			}
 		],

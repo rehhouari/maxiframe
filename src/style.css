@@ -98,7 +98,7 @@ div {
 }
 
 .wf-card .profile img {
-	@apply rounded w-18 select-none;
+	@apply rounded w-18! h-18 select-none;
 }
 
 /*#region abilities*/
@@ -116,7 +116,7 @@ div {
 }
 
 .ability div img {
-	@apply w-10 invert dark:filter-none mx-auto select-none;
+	@apply w-10! h-10! aspect-square invert dark:filter-none mx-auto select-none;
 }
 
 .ability div  span {
