@@ -65,6 +65,13 @@
 			"type": "image/webp",
 			"form_factor": "narrow",
 			"label": "Homescreen of Maxiframe"
+		},
+		{
+			"src": "/screenshot_mobile_light.webp",
+			"sizes": "828x1792",
+			"type": "image/webp",
+			"form_factor": "narrow",
+			"label": "Homescreen of Maxiframe (Light theme)"
 		}
 	],
 	"scope": "/",
