@@ -5,7 +5,6 @@ import 'virtual:uno.css'
 /// Import Alpine.js
 import Alpine from 'alpinejs'
 /// Import Alpine.js plugins
-import focus from '@alpinejs/focus'
 import persist from '@alpinejs/persist'
 import PineconeRouter from 'pinecone-router'
 
@@ -17,7 +16,6 @@ window.Fuse = Fuse
 
 /// load plugins
 Alpine.plugin(PineconeRouter)
-Alpine.plugin(focus)
 Alpine.plugin(persist)
 Alpine.data('maxiframe', maxiframe)
 window.Alpine = Alpine
