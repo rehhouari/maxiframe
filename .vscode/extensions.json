@@ -1,9 +1,5 @@
 {
 	"recommendations": [
-		"astro-build.astro-vscode",
-		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint",
-		"bradlc.vscode-tailwindcss",
 		"pcbowers.alpine-intellisense",
 		"csstools.postcss",
 		"antfu.unocss"

@@ -8,25 +8,27 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- Favicons. -->
-	<link rel="apple-touch-icon" sizes="57x57" href="/favicon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/favicon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/favicon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/favicon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/favicon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/favicon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/favicon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/favicon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
-	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/favicon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/favicon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/favicon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/favicon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/favicon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/favicon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/favicon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/favicon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/favicon-180x180.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/favicon-192x192.png">
+	<link rel="shortcut icon" type="image/x-icon" href="/images/favicons/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/images/favicons/favicon.ico">
 	<meta name="msapplication-TileColor" content="#FFFFFF">
-	<meta name="msapplication-TileImage" content="/favicon-144x144.png">
+	<meta name="msapplication-TileImage" content="/images/favicons/favicon-144x144.png">
 	<meta name="msapplication-config" content="/browserconfig.xml">
-	<link rel="manifest" href="/manifest.json">
+	<link rel="manifest" href="/manifest.json"
+		media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)">
+	<link rel="manifest" href="/manifest-dark.json" media="(prefers-color-scheme: dark)">
 	<meta name="theme-color" content="#02B9FF" />
 	<link rel="preconnect" href="https://rsms.me/">
 	<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -37,7 +39,8 @@
 
 <body class="container bg-white dark:(bg-gray-900 text-white)">
 	<div class="prose prose-slate dark:prose-invert mx-auto" x-data="maxiframe()"
-		@keydown.document.shift.d.prevent="toggleDarkMode()" x-cloak>
+		@keydown.document.shift.d.prevent="toggleDarkMode()"
+		@keydown.document.ctrl.k.prevent="showResults? hideSearch():showSearch()" x-cloak>
 		<header>
 			<!-- #region navbar-->
 			<div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-2">
@@ -45,19 +48,21 @@
 					<div class="md:flex md:items-center md:gap-12">
 						<a class="block" href="/">
 							<span class="sr-only">Home</span>
-							<img src="/transparent.webp" alt="" srcset="" class=" w-20 inline select-none">
+							<img src="/images/favicons/transparent.webp" alt="" srcset=""
+								class=" w-20 inline select-none">
 						</a>
 					</div>
 				</div>
 			</div>
-			<div class="relative" @keydown.escape="showResults=false" @click.outside="showResults=false">
+			<div class="relative" @keydown.escape="hideSearch()" @click.outside="hideSearch()"
+				x-trap="showResults == true">
 				<!-- #endregion -->
 				<!-- #region Search bar-->
 				<form role="search" class="relative search-bar" @submit.prevent>
 					<label for="Search" class="sr-only"> Search </label>
 					<input type="text" id="Search" placeholder="Search for Warframe or ability..." autocomplete="off"
 						x-model.debounce="search" @focus="showResults = true" @input="showResults = true"
-						@click="showResults = true" name="maxiframe search" />
+						@click="showResults = true" name="maxiframe search" x-ref="searchInput" />
 					<span class="icon">
 						<span class="sr-only">Search</span>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -75,7 +80,7 @@
 							<div>
 								<template x-for="warframe in data" :key="warframe.name">
 									<li class="search-result">
-										<a :href="'/' + warframe.name">
+										<a :href="'/'+ warframe.name">
 											<div>
 												<span x-text="warframe.name"></span>
 											</div>
@@ -115,7 +120,8 @@
 			<div class="">
 				<template x-route="/" x-template.preload.target.app="/pages/home.html"></template>
 				<template x-route="notfound" x-template.target.app="/pages/404.html"></template>
-				<template x-route="/:warframe/:ability?" x-handler="[getIndicies]"
+				<template x-route="/:warframe/:ability?"
+					x-handler="[getIndicies, getAbilityModifiers, calculateStatsAccordingly]"
 					x-template.preload.target.app="/pages/calculator.html"></template>
 				<div id="app"></div>
 			</div>

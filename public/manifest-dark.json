@@ -78,5 +78,5 @@
 	"start_url": "/?source=pwa",
 	"display": "standalone",
 	"theme_color": "#02B9FF",
-	"background_color": "#111827"
+	"background_color": "#FFFFFF"
 }

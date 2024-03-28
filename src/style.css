@@ -55,12 +55,12 @@ div {
 	@apply max-h-64 overflow-auto list-none p-2 m-0 grid grid-cols-1;
 }
 
-.search-result a div {
+.search-result a div, .search-result button div {
 	@apply flex items-center justify-between rounded-md px-4 py-2 h-10 text-3 font-medium hoverable;
 }
 
-.search-result a {
-	@apply no-underline;
+.search-result a, .search-result button {
+	@apply no-underline w-full;
 }
 
 .tag {
@@ -189,8 +189,16 @@ div {
 	@apply flex flex-col flex-1 gap-y-4;
 }
 .ability-stats {
-	@apply border border-gray-200 dark:border-gray-800 rounded-4 px-4 pb-4;
+	@apply border border-gray-200 dark:border-gray-800 rounded-4 px-4 pb-4 space-y-5;
 }
+.ability-stats p {
+	@apply text-xs
+}
+
+.ability-stats a {
+	@apply decoration-none hover:underline
+}
+
 .ability-stats .stats {
 	@apply text-sm space-y-2;
 }

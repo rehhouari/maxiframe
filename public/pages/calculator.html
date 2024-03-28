@@ -9,7 +9,7 @@
 				<div class="abilities">
 					<template x-for="ability, index in getAbilities()" :key="ability.id">
 						<a :href="getAbilityLink(ability, index)" class="ability"
-							:class="$router.params.ability?.toLowerCase() == ability.id && 'selected'">
+							:class="$router.params.ability.toLowerCase() == ability.id && 'selected'">
 							<div>
 								<img :src="ability.wikiaImage">
 								<span x-text="ability.name"></span>
@@ -21,28 +21,27 @@
 			<div class="maximization-layout">
 				<div class="ability-modifiers">
 					<div>
-						<template x-for="(modifier, key) in getAbilityModifiers()" :key="key">
+						<template x-for="(modifier, key) in abilityModifiers" :key="key">
 							<div class="ability-modifier">
 								<label :for="key" x-text="modifier.name"></label>
 								<template x-if="modifier.type == 'percentage'">
 									<div class="number-input">
-										<button type="button" x-on:click="modifier.value-=5">
+										<button type="button" x-on:click="changeModifier(key, modifier.value -= 5)">
 											&minus;
 										</button>
 
-										<input type="number" :id="key" x-model.number.debounce="modifier.value" min="0"
-											max="9999" />
+										<input type="number" :value="modifier.value" min="0" max="9999" :id="key"
+											@input.debounce="changeModifier(key, $el.value)" />
 
-										<button type="button" x-on:click="modifier.value+=5">
+										<button type="button" x-on:click="changeModifier(key, modifier.value+5)">
 											&plus;
 										</button>
 									</div>
 								</template>
 								<template x-if="modifier.type == 'bool'">
-									<div class="toggle" @click="modifier.value = !modifier.value">
-										<input x-model.boolean="modifier.value" type="checkbox" :id="key"
-											class="peer sr-only" />
-
+									<div class="toggle" @click="document.getElementById(key).click()">
+										<input x-model="modifier.value" type="checkbox" :id="key"
+											@change="changeModifier(key, modifier.value)" class="peer sr-only" />
 										<span :class="modifier.value && 'bg-brand-primary!'"
 											class="absolute inset-0 rounded-full transition bg-gray-300 dark:bg-gray-600"></span>
 
@@ -57,11 +56,16 @@
 				<div class="abilities-stats">
 					<template x-for="(ability, index) in getAbilities(true)" :key="ability.id">
 						<div class="ability-stats">
-							<h4 x-text="ability.name"></h4>
+							<div>
+								<a :href="getWikiLink(ability.id)" target="_blank">
+									<h4 x-text="ability.name"></h4>
+								</a>
+								<p x-text="ability.description"></p>
+							</div>
 							<div class="stats">
 								<template x-for="stat in ability.stats">
 									<div>
-										<span x-text="stat.prefix + stat.value + stat.unit" class="stat-value"
+										<span x-text="getStatValue(stat)" class="stat-value"
 											:class="getStatColor(stat)"></span>
 										<span x-text="stat.name"></span>
 									</div>

@@ -16,7 +16,7 @@ export default defineConfig({
 		presetTypography(),
 		presetAttributify(), // required when using attributify mode
 		presetUno({
-			dark: 'media'
+			dark: 'class'
 		}), // required
 		presetWind(),
 		presetForms(),

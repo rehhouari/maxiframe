@@ -1,6 +1,6 @@
 {
 	"name": "maxiframe",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"private": false,
 	"scripts": {
 		"dev": "vite dev",
@@ -16,18 +16,17 @@
 		"@unocss/reset": "^0.55.7",
 		"@unocss/transformer-directives": "^0.58.3",
 		"@unocss/transformer-variant-group": "^0.58.3",
-		"vite-plugin-pwa": "^0.16.5"
+    "@julr/unocss-preset-forms": "^0.1.0",
+		"vite-plugin-pwa": "^0.16.5",
+    "vite": "^4.5.2"
+
 	},
 	"dependencies": {
-		"@alpinejs/focus": "^3.13.0",
 		"@alpinejs/persist": "^3.13.0",
-		"@julr/unocss-preset-forms": "^0.1.0",
-		"@ryangjchandler/alpine-clipboard": "^2.2.0",
-		"@types/alpinejs": "^3.13.0",
+    "@alpinejs/focus": "^3.13.0",
 		"alpinejs": "^3.13.0",
 		"fuse.js": "^7.0.0",
 		"pinecone-router": "^4.0.3",
-		"unocss": "^0.56.1",
-		"vite": "^4.5.2"
+		"unocss": "^0.56.1"
 	}
 }
