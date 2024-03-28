@@ -23,8 +23,7 @@
 	},
 	"dependencies": {
 		"@alpinejs/persist": "^3.13.0",
-    "@alpinejs/focus": "^3.13.0",
-		"alpinejs": "^3.13.0",
+    "alpinejs": "^3.13.0",
 		"fuse.js": "^7.0.0",
 		"pinecone-router": "^4.0.3",
 		"unocss": "^0.56.1"

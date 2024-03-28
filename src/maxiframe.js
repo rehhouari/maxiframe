@@ -265,7 +265,7 @@ export default () => ({
 		this.showResults = true
 	},
 	hideSearch() {
-		this.showResults = false
 		this.$refs['searchInput'].blur()
+		this.showResults = false
 	}
 })
