@@ -9,7 +9,7 @@
 				<div class="abilities">
 					<template x-for="ability, index in getAbilities()" :key="ability.id">
 						<a :href="getAbilityLink(ability, index)" class="ability"
-							:class="$router.params.ability.toLowerCase() == ability.id && 'selected'">
+							:class="$router.params.ability?.toLowerCase() == ability.id && 'selected'">
 							<div>
 								<img :src="ability.wikiaImage">
 								<span x-text="ability.name"></span>

@@ -56,8 +56,8 @@ export default defineConfig({
 		},
 	},
 	shortcuts: {
-		'border-interactable': 'border border-gray-200 dark:border-gray-700',
-		'hoverable': 'hover:bg-gray-100 dark:(hover-bg-gray-600 text-white)',
-		'bg-standout': 'bg-white dark:bg-gray-800'
+		'border-interactable': 'border border-gray-200 dark:border-gray-700 ring-brand-primary! transition',
+		'hoverable': 'hover:bg-gray-100 dark:(hover-bg-gray-600 text-white) transition duration-300',
+		'bg-standout': 'bg-white dark:(text-white stroke-white bg-gray-800)',
 	}
 })

@@ -1,0 +1,135 @@
+<div>
+	<div class="wf-container">
+		<div class="wf-card">
+			<a href="/editor" class="profile">
+				<span>Ezio Editore</span>
+			</a>
+			<div class="abilities">
+				<template x-for="ability, index in editorData.abilities" :key="ability.id">
+					<a href="#" class="ability">
+						<div>
+							<img :src="ability.wikiaImage">
+							<span x-text="ability.name"></span>
+						</div>
+					</a>
+				</template>
+			</div>
+		</div>
+		<div class="maximization-layout flex-col gap-8">
+			<div class="ability-modifiers">
+				<div>
+					<template x-for="(modifier, key) in abilityModifiers" :key="key">
+						<div class="flex items-center gap-2 justify-between">
+							<div class="ability-modifier w-full">
+								<label :for="key" x-text="key" :title="modifier.name"></label>
+								<template x-if="modifier.type == 'percentage'">
+									<div class="number-input">
+										<button type="button" x-on:click="changeModifier(key, modifier.value -= 5)">
+											&minus;
+										</button>
+										<input type="number" :value="modifier.value" min="0" max="9999" :id="key"
+											@input.debounce="changeModifier(key, $el.value)" />
+										<button type="button" x-on:click="changeModifier(key, modifier.value+5)">
+											&plus;
+										</button>
+									</div>
+								</template>
+								<template x-if="modifier.type == 'bool'">
+									<div class="toggle" @click="document.getElementById(key).click()">
+										<input x-model="modifier.value" type="checkbox" :id="key"
+											@change="changeModifier(key, modifier.value)" class="peer sr-only" />
+										<span :class="modifier.value && 'bg-brand-primary!'"
+											class="absolute inset-0 rounded-full transition bg-gray-300 dark:bg-gray-600"></span>
+										<span :class="{ 'start-0': !modifier.value, 'start-7': modifier.value }"
+											class="absolute inset-y-0 m-1 h-5 w-5 rounded-full bg-white transition-all"></span>
+									</div>
+								</template>
+							</div>
+							<template x-if="key in baseAbilityModifiers == false">
+								<a class="inline-block rounded-full p-0.5 hoverable bg-standout hover:bg-red-500"
+									href="#">
+									<span class="sr-only"> Delete </span>
+
+									<svg class="w-5 " viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										<path d="M8 8L16 16" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path d="M16 8L8 16" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" />
+									</svg>
+								</a>
+							</template>
+
+						</div>
+					</template>
+				</div>
+				<div x-data="{id: 'ID', name: 'Name', type: 'bool', value: null}">
+					<div>Add Modifier</div>
+					<input type="text" x-model="id" placeholder="ID" />
+					<input type="text" x-model="name" placeholder="Name" />
+
+					<select x-model="type" @change="value = editorData.modifierTypes[type]">
+						<template x-for="(value, modifierType) in editorData.modifierTypes">
+							<option :value="modifierType" x-text="modifierType"></option>
+						</template>
+					</select>
+					<div class="flex justify-between">
+						<div>Value</div>
+						<template x-if="type == 'percentage'">
+							<div class="number-input">
+								<button type="button" x-on:click="value -= 5">
+									&minus;
+								</button>
+
+								<input type="number" :value="value" min="0" max="9999" />
+
+								<button type="button" x-on:click="value+=5">
+									&plus;
+								</button>
+							</div>
+						</template>
+						<template x-if="type == 'bool'">
+							<div class="toggle" @click="$refs.addModifierCheckbox.click()">
+								<input x-model="value" type="checkbox" x-ref="addModifierCheckbox"
+									class="peer sr-only" />
+								<span :class="value && 'bg-brand-primary!'"
+									class="absolute inset-0 rounded-full transition bg-gray-300 dark:bg-gray-600"></span>
+
+								<span :class="{ 'start-0': !value, 'start-7': value }"
+									class="absolute inset-y-0 m-1 h-5 w-5 rounded-full bg-white transition-all"></span>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+			<div class="abilities-stats">
+				<template x-for="(ability, index) in editorData.abilities" :key="ability.id">
+					<div class="ability-stats">
+						<div>
+							<h4 contenteditable="true" x-text="ability.name"
+								@input="editorData.abilities[index].name = $event.target.textContent">
+							</h4>
+							<p contenteditable="true" x-text="ability.description" x-model="ability.description"></p>
+						</div>
+						<div class="stats">
+							<template x-for="stat in ability.stats">
+								<div class="flex-col space-y-4 border-interactable p-2 rounded">
+									<input type="text" :id="ability.id+'-'+stat.name.replaceAll(' ', '')+'-formula'"
+										x-model="stat.formula"
+										@input.debounce.500ms="calculateStats(changedModifiers)" />
+									<div>
+										<span x-text="getStatValue(stat)" class="stat-value"
+											:class="getStatColor(stat)"></span>
+										<span x-text="stat.name"></span>
+									</div>
+								</div>
+							</template>
+						</div>
+					</div>
+				</template>
+			</div>
+		</div>
+		<div class="wf-image-credits">
+			<p>Images belong to <a href="https://warframe.fandom.com" class="link">Warframe Wiki</a></p>
+		</div>
+	</div>
+</div>

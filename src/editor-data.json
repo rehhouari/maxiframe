@@ -1,0 +1,236 @@
+{
+	"abilities": [
+		{
+			"id": "tail_wind",
+			"name": "Tail Wind",
+			"description": "Hold while airborne to hover Zephyr with reduced movement. From the air, tap to dash forward, or aim down to dive bomb enemies below.",
+			"imageName": "tail-wind.png",
+			"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/6/6e/TailWind130xWhite.png",
+			"stats": [
+				{
+					"name": "Damage",
+					"base": 750,
+					"formula": "STR * BASE",
+					"usedModifiers": [
+						"STR"
+					],
+					"unit": "",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 0,
+					"biggerIsPositive": true,
+					"outdated": false
+				},
+				{
+					"name": "Speed",
+					"base": 30,
+					"formula": "DUR * BASE",
+					"usedModifiers": [
+						"DUR"
+					],
+					"unit": "m/s",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 2,
+					"biggerIsPositive": true,
+					"outdated": false
+				},
+				{
+					"name": "Contact range",
+					"base": 2,
+					"formula": "RNG * BASE",
+					"usedModifiers": [
+						"RNG"
+					],
+					"unit": "m",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 2,
+					"biggerIsPositive": true,
+					"outdated": false
+				},
+				{
+					"name": "Dive bomb - Damage",
+					"base": 4500,
+					"formula": "STR * BASE",
+					"usedModifiers": [
+						"STR"
+					],
+					"unit": "",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 0,
+					"biggerIsPositive": true,
+					"outdated": false
+				},
+				{
+					"name": "Dive bomb - Explosion range",
+					"base": 7,
+					"formula": "RNG * BASE",
+					"unit": "m",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 2,
+					"biggerIsPositive": true,
+					"outdated": false
+				},
+				{
+					"name": "Energy",
+					"base": 25,
+					"formula": "EFF * BASE / (AIRBORNE ? 2 : 1)",
+					"unit": "",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 2,
+					"biggerIsPositive": false,
+					"outdated": false
+				},
+				{
+					"name": "Hover Glide - initial cast energy",
+					"base": 12.5,
+					"formula": "EFF * BASE / (AIRBORNE ? 2 : 1)",
+					"unit": "",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 2,
+					"biggerIsPositive": false,
+					"outdated": false
+				},
+				{
+					"name": "Hover Glide - energy",
+					"base": 5,
+					"formula": "EFF * BASE",
+					"unit": "/s",
+					"prefix": "",
+					"digitsAfterDecimalPoint": 0,
+					"biggerIsPositive": false,
+					"outdated": false
+				}
+			]
+		}
+	],
+	"extraModifiers": {
+		"AIRBORNE": {
+			"value": false,
+			"type": "bool",
+			"name": "Is Airborne"
+		}
+	},
+	"sampleExtraModifier": {
+		"id": "ID",
+		"value": false,
+		"type": "bool",
+		"name": "Name"
+	},
+	"modifierTypes": {
+		"bool": false,
+		"percentage": 100
+	},
+	"sampleStat": {
+		"name": "Damage",
+		"base": 750,
+		"formula": "STR * BASE",
+		"usedModifiers": [
+			"STR"
+		],
+		"unit": "",
+		"prefix": "",
+		"digitsAfterDecimalPoint": 0,
+		"biggerIsPositive": true,
+		"outdated": false
+	},
+	"sampleAbility": {
+		"id": "tail_wind",
+		"name": "Tail Wind",
+		"description": "Hold while airborne to hover Zephyr with reduced movement. From the air, tap to dash forward, or aim down to dive bomb enemies below.",
+		"imageName": "tail-wind.png",
+		"wikiaImage": "https://static.wikia.nocookie.net/warframe/images/6/6e/TailWind130xWhite.png",
+		"stats": [
+			{
+				"name": "Damage",
+				"base": 750,
+				"formula": "STR * BASE",
+				"usedModifiers": [
+					"STR"
+				],
+				"unit": "",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 0,
+				"biggerIsPositive": true,
+				"outdated": false
+			},
+			{
+				"name": "Speed",
+				"base": 30,
+				"formula": "DUR * BASE",
+				"usedModifiers": [
+					"DUR"
+				],
+				"unit": "m/s",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 2,
+				"biggerIsPositive": true,
+				"outdated": false
+			},
+			{
+				"name": "Contact range",
+				"base": 2,
+				"formula": "RNG * BASE",
+				"usedModifiers": [
+					"RNG"
+				],
+				"unit": "m",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 2,
+				"biggerIsPositive": true,
+				"outdated": false
+			},
+			{
+				"name": "Dive bomb - Damage",
+				"base": 4500,
+				"formula": "STR * BASE",
+				"usedModifiers": [
+					"STR"
+				],
+				"unit": "",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 0,
+				"biggerIsPositive": true,
+				"outdated": false
+			},
+			{
+				"name": "Dive bomb - Explosion range",
+				"base": 7,
+				"formula": "RNG * BASE",
+				"unit": "m",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 2,
+				"biggerIsPositive": true,
+				"outdated": false
+			},
+			{
+				"name": "Energy",
+				"base": 25,
+				"formula": "EFF * BASE / (AIRBORNE ? 2 : 1)",
+				"unit": "",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 2,
+				"biggerIsPositive": false,
+				"outdated": false
+			},
+			{
+				"name": "Hover Glide - initial cast energy",
+				"base": 12.5,
+				"formula": "EFF * BASE / (AIRBORNE ? 2 : 1)",
+				"unit": "",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 2,
+				"biggerIsPositive": false,
+				"outdated": false
+			},
+			{
+				"name": "Hover Glide - energy",
+				"base": 5,
+				"formula": "EFF * BASE",
+				"unit": "/s",
+				"prefix": "",
+				"digitsAfterDecimalPoint": 0,
+				"biggerIsPositive": false,
+				"outdated": false
+			}
+		]
+	}
+}

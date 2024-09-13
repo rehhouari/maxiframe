@@ -37,7 +37,7 @@
 	<link rel="stylesheet" href="./src/style.css">
 </head>
 
-<body class="container bg-white dark:(bg-gray-900 text-white)">
+<body class="container w-full bg-white dark:(bg-gray-900 text-white)">
 	<div class="prose prose-slate dark:prose-invert mx-auto" x-data="maxiframe()"
 		@keydown.document.shift.d.prevent="toggleDarkMode()"
 		@keydown.document.ctrl.k.prevent="showResults? hideSearch():showSearch()" x-cloak>
@@ -119,6 +119,8 @@
 			<div class="">
 				<template x-route="/" x-template.preload.target.app="/pages/home.html"></template>
 				<template x-route="notfound" x-template.target.app="/pages/404.html"></template>
+				<template x-route="/editor" x-handler="[getAbilityModifiers]"
+					x-template.target.app="/pages/editor.html"></template>
 				<template x-route="/:warframe/:ability?"
 					x-handler="[getIndicies, getAbilityModifiers, calculateStatsAccordingly]"
 					x-template.preload.target.app="/pages/calculator.html"></template>

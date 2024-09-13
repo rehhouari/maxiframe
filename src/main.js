@@ -6,6 +6,7 @@ import 'virtual:uno.css'
 import Alpine from 'alpinejs'
 /// Import Alpine.js plugins
 import persist from '@alpinejs/persist'
+// import PineconeRouter from 'pinecone-router'
 import PineconeRouter from 'pinecone-router'
 
 import maxiframe from "./maxiframe.js"

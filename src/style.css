@@ -55,7 +55,7 @@ div {
 	@apply max-h-64 overflow-auto list-none p-2 m-0 grid grid-cols-1;
 }
 
-.search-result a div, .search-result button div {
+.search-result a div, .search-result button div  {
 	@apply flex items-center justify-between rounded-md px-4 py-2 h-10 text-3 font-medium hoverable;
 }
 
@@ -72,7 +72,7 @@ div {
 /*#region searchbar*/
 
 .search-bar input {
-	@apply w-full rounded-md py-2.5 pe-10  shadow-sm text-sm border-interactable bg-standout;
+	--at-apply: "w-full rounded-md py-2.5 pe-10  shadow-sm text-sm border-interactable bg-standout";
 }
 
 .search-bar .icon {
@@ -160,10 +160,13 @@ div {
 	@apply flex justify-between items-center sm:gap-x-4;
 }
 
+
 .ability-modifier label {
 	@apply text-[--un-prose-links];
 }
 
+
+/* number input */
 .number-input {
 	@apply items-center rounded border border-gray-200 dark:border-gray-800;
 }
@@ -175,12 +178,19 @@ div {
 .number-input button {
 	@apply h-8 w-8   transition hover:opacity-75 ;
 }
+ 
 
+/* text input */
+input[type="text"] {
+	--at-apply: "border-interactable rounded-md shadow-sm sm:text-sm bg-standout ring-brand-primary!";
+}
 
 
 .toggle {
 	@apply relative h-7 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]";
 }
+
+
 /*#endregion*/
 
 
@@ -217,12 +227,13 @@ div {
 }
 
 
+
 /*#endregion*/
 
 label {
 	@apply cursor-pointer;
 }
 
-input {
-	@apply ring-brand-primary!;
+div select {
+	--at-apply: "border-interactable w-full rounded-lg text-gray-700 sm:text-sm bg-standout";
 }

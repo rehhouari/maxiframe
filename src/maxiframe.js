@@ -1,4 +1,5 @@
 import maxiframeData from './data.json'
+import editorData from './editor-data.json'
 
 export default () => ({
 	search: '',
@@ -7,6 +8,8 @@ export default () => ({
 	fuseInstance: null,
 	noResults: false,
 	data: maxiframeData,
+	editorData: editorData,
+	editor: false,
 	selectedFrameIndex: -1,
 	selectedAbilityIndex: -1,
 	oldSelectedFrameIndex: -1,
@@ -101,16 +104,30 @@ export default () => ({
 		}
 	},
 
-	getAbilityModifiers() {
+	getAbilityModifiers(ctx) {
+		if (ctx.route == '/editor') {
+			this.editor = true
+			// when the editor is opened, combine the base and extra modifiers into one object
+			this.abilityModifiers = { ...this.baseAbilityModifiers, ...(this.editorData.extraModifiers ?? []) }
+			return
+		} else {
+			this.editor = false
+		}
+
+		// when no frame is selected, return
+		if (this.selectedFrameIndex == -1) {
+			return
+		}
 		// when a new frame is selected, combine the base and extra modifiers into one object
 		// or when a frame is selected for the first time)
-		if (this.oldSelectedFrameIndex == -1 || (this.oldSelectedFrameIndex != this.selectedFrameIndex)) {
+		else if (this.oldSelectedFrameIndex == -1 || (this.oldSelectedFrameIndex != this.selectedFrameIndex)) {
 			this.abilityModifiers = { ...this.baseAbilityModifiers, ...(this.data[this.selectedFrameIndex].extraModifiers ?? []) }
 		}
 	},
 
 	// this will decide when to recalculate stats based on current and previously selected frame and which modifiers were changed
 	calculateStatsAccordingly() {
+		console.log("TEST")
 		if (this.changedModifiers.length) {
 			this.calculateStats(this.changedModifiers)
 		}
@@ -146,27 +163,33 @@ export default () => ({
 	//#region maximization page
 
 	changeModifier(key, value = null) {
-		console.log({ key, value })
 		if (value != null) {
 			this.abilityModifiers[key].value = value
 		}
 		if (!this.changedModifiers.includes(key)) {
 			this.changedModifiers.push(key)
 		}
-		// recalculate stats of current ability or all current frame abilities everytime a modifier is changed
+		// recalculate stats of current ability or all current frame abilities
+		// everytime a modifier is changed
 		this.calculateStats([key])
 	},
 
 	// calculate all stats for current ability, or all abilities of current frame
 	calculateStats(modifiers = []) {
-		console.log({ 'cstats': modifiers })
-		const context = this.getContext(this.selectedFrameIndex)
+		const context = this.getContext()
 		if (this.selectedAbilityIndex != -1) {
 			// if we have an ability selected only calculate its stats
 			let ability = this.data[this.selectedFrameIndex].abilities[this.selectedAbilityIndex]
 			ability.stats = this.getAbilityStats(ability, context, modifiers)
 		} else {
-			this.data[this.selectedFrameIndex].abilities.stats = this.data[this.selectedFrameIndex].abilities.map((ability) => this.getAbilityStats(ability, context, modifiers))
+			if (this.editor)
+				this.editorData.abilities.status = this.editorData.abilities.map(
+					(ability) => this.getAbilityStats(ability, context, modifiers)
+				)
+			else this.data[this.selectedFrameIndex].abilities.stats =
+				this.data[this.selectedFrameIndex].abilities.map(
+					(ability) => this.getAbilityStats(ability, context, modifiers)
+				)
 		}
 	},
 
@@ -175,7 +198,7 @@ export default () => ({
 	// it takes a frame index & ability index, and calculate all the stats
 	// it also take modifiers for when it is changed, and recalculate all stats that uses it
 	// when no modifiers are present it recalculate all stats
-	getAbilityStats(ability, context, modifiers = []) {
+	getAbilityStats(ability, context, modifiers = [], formulaChange = false) {
 		if (!ability.stats.length) return []
 
 		// evaluate a formula in context
@@ -185,8 +208,8 @@ export default () => ({
 
 		let stats = ability.stats.map((stat) => {
 			context['BASE'] = structuredClone(stat.base)
-			// only calculated stats that use affected modifier
-			if (modifiers.length && modifiers.some(modifier => stat.formula.includes(modifier)) == false) {
+			// only calculate stats that use affected modifier
+			if (!modifiers.length || modifiers.some(modifier => stat.formula.includes(modifier)) == false) {
 				return stat
 			}
 			let newStat = stat
@@ -203,7 +226,13 @@ export default () => ({
 	},
 
 	getAbilityLink(ability, index) {
-		let link = '/' + this.data[this.selectedFrameIndex].name
+		let link = '/'
+		if (this.editor) {
+			link += 'editor'
+			return link
+		} else {
+			link += this.data[this.selectedFrameIndex].name
+		}
 		if (this.selectedAbilityIndex == index)
 			return link
 		else return link + '/' + ability.id
